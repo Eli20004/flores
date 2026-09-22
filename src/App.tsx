@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import bouquetImage from './assets/yellow-bouquet.png'
 
 const petals = Array.from({ length: 16 }, (_, index) => ({
   id: index,
@@ -27,6 +26,51 @@ function PetalField() {
       ))}
     </div>
   )
+}
+
+type BloomProps = { x: number; y: number; delay: number }
+
+function Sunflower({ x, y, delay }: BloomProps) {
+  const reduceMotion = useReducedMotion()
+  return <motion.g initial={reduceMotion ? false : { scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay, type: 'spring', stiffness: 130, damping: 12 }} style={{ transformOrigin: `${x}px ${y}px` }}>
+    {Array.from({ length: 16 }, (_, i) => <ellipse key={i} cx={x} cy={y - 21} rx="11" ry="29" fill="#f7bf21" transform={`rotate(${i * 22.5} ${x} ${y})`} />)}
+    <circle cx={x} cy={y} r="22" fill="#6f4b1f" /><circle cx={x} cy={y} r="15" fill="#8a6027" />
+  </motion.g>
+}
+
+function Tulip({ x, y, delay }: BloomProps) {
+  const reduceMotion = useReducedMotion()
+  return <motion.g initial={reduceMotion ? false : { scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay, type: 'spring', stiffness: 145, damping: 13 }} style={{ transformOrigin: `${x}px ${y}px` }}>
+    <path d={`M${x - 27} ${y + 17} C${x - 33} ${y - 22},${x - 12} ${y - 47},${x} ${y - 22} C${x + 12} ${y - 47},${x + 33} ${y - 22},${x + 27} ${y + 17} C${x + 11} ${y + 31},${x - 11} ${y + 31},${x - 27} ${y + 17}Z`} fill="#f6cc2a" />
+    <path d={`M${x} ${y - 22}v44`} stroke="#e3ad18" strokeWidth="3" opacity=".6" />
+  </motion.g>
+}
+
+function Rose({ x, y, delay }: BloomProps) {
+  const reduceMotion = useReducedMotion()
+  return <motion.g initial={reduceMotion ? false : { scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay, type: 'spring', stiffness: 150, damping: 13 }} style={{ transformOrigin: `${x}px ${y}px` }}>
+    <circle cx={x} cy={y} r="30" fill="#f4c229" />
+    <path d={`M${x - 22} ${y + 3}C${x - 6} ${y - 25},${x + 24} ${y - 17},${x + 13} ${y + 4}C${x + 2} ${y + 22},${x - 17} ${y + 16},${x - 9} ${y - 2}C${x} ${y - 13},${x + 11} ${y - 2},${x + 2} ${y + 10}`} fill="none" stroke="#fff0a3" strokeWidth="5" strokeLinecap="round" />
+  </motion.g>
+}
+
+function AnimatedBouquet() {
+  const reduceMotion = useReducedMotion()
+  const stems = [[320, 120], [205, 152], [435, 145], [122, 210], [510, 206], [270, 215], [376, 222]]
+
+  return <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_50%_5%,#fffdf0,transparent_45%),linear-gradient(145deg,#f9edb7,#f6d668)] shadow-flower">
+    <svg viewBox="0 0 640 420" className="h-full w-full" role="img" aria-label="Ramo animado de flores amarillas creado para Wendy">
+      <motion.ellipse cx="320" cy="394" rx="145" ry="19" fill="#b58d42" opacity=".22" initial={{ opacity: 0 }} animate={{ opacity: .22 }} transition={{ delay: .25 }} />
+      {stems.map(([x, y], i) => <motion.path key={i} d={`M320 372 Q${(320 + x) / 2} ${300 - i * 8} ${x} ${y + 28}`} fill="none" stroke="#537341" strokeWidth="9" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: reduceMotion ? 0 : .7, delay: i * .11 }} />)}
+      {[[234, 270, -28], [390, 267, 30], [176, 296, -42], [455, 301, 37], [281, 302, -18]].map(([x, y, angle], i) => <motion.ellipse key={i} cx={x} cy={y} rx="13" ry="31" fill="#71934f" transform={`rotate(${angle} ${x} ${y})`} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: .55 + i * .1 }} />)}
+      <motion.path d="M242 330 L320 390 L397 330 L370 395 L320 407 L270 395Z" fill="#ead5aa" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: .65, delay: .85 }} />
+      <Sunflower x={122} y={198} delay={.7} /><Sunflower x={510} y={194} delay={.85} /><Sunflower x={320} y={116} delay={1.02} />
+      <Tulip x={205} y={142} delay={1.12} /><Tulip x={435} y={137} delay={1.22} /><Tulip x={270} y={205} delay={1.32} /><Tulip x={376} y={212} delay={1.42} />
+      <Rose x={184} y={235} delay={1.5} /><Rose x={454} y={238} delay={1.6} />
+      {[{ x: 80, y: 150 }, { x: 560, y: 145 }, { x: 155, y: 116 }, { x: 488, y: 111 }, { x: 320, y: 205 }].map((dot, i) => <motion.circle key={i} cx={dot.x} cy={dot.y} r="11" fill="#e8b426" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.7 + i * .08, type: 'spring' }} />)}
+      <motion.path d="M268 342 Q320 305 372 342" fill="none" stroke="#f9f0d4" strokeWidth="8" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: .5, delay: 2.05 }} />
+    </svg>
+  </div>
 }
 
 function App() {
@@ -63,7 +107,7 @@ function App() {
               </div>
               <motion.div initial={reduceMotion ? false : { clipPath: 'inset(100% 0 0 0 round 2rem)', scale: 0.94 }} animate={{ clipPath: 'inset(0% 0 0 0 round 2rem)', scale: 1 }} transition={{ duration: reduceMotion ? 0 : 1.35, delay: 0.35, ease: 'easeOut' }} className="relative mx-auto w-full max-w-2xl">
                 <div className="absolute -inset-5 rounded-[2.5rem] bg-sunshine/15 blur-3xl" />
-                <img src={bouquetImage} alt="Ramo de girasoles, tulipanes, rosas y craspedias amarillas" className="relative aspect-[3/2] w-full rounded-[2rem] object-cover shadow-flower" />
+                <div className="relative"><AnimatedBouquet /></div>
               </motion.div>
             </motion.div>
           )}
