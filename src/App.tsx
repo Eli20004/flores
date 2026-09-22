@@ -102,9 +102,9 @@ function App() {
         <PetalField />
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
           <div className="max-w-xl pt-8 lg:pt-0">
-            <motion.p {...fadeUp(0.08)} className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-sage">Un detalle que florece</motion.p>
-            <motion.h1 {...fadeUp(0.2)} className="font-display text-5xl leading-[1.04] tracking-tight text-forest sm:text-6xl lg:text-7xl">Flores amarillas para iluminar tu día</motion.h1>
-            <motion.p {...fadeUp(0.34)} className="mt-7 max-w-md text-lg leading-8 text-forest/70">Un ramo pensado para celebrar la alegría sencilla, los días nuevos y a quienes hacen que todo se sienta más cálido.</motion.p>
+            <motion.p {...fadeUp(0.08)} className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-sage">Para Wendy, con todo mi cariño</motion.p>
+            <motion.h1 {...fadeUp(0.2)} className="font-display text-5xl leading-[1.04] tracking-tight text-forest sm:text-6xl lg:text-7xl">Flores amarillas para la niña que ilumina mis días</motion.h1>
+            <motion.p {...fadeUp(0.34)} className="mt-7 max-w-md text-lg leading-8 text-forest/70">Wendy, cada flor de este ramo es un pequeño recordatorio de lo mucho que me haces sonreír. Gracias por llenar mis días de luz.</motion.p>
             <motion.a
               {...fadeUp(0.48)}
               href="#flores"
@@ -112,7 +112,7 @@ function App() {
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
               className="mt-9 inline-flex items-center gap-3 rounded-full bg-forest px-7 py-4 font-semibold text-white shadow-lg shadow-forest/20 transition-colors hover:bg-[#415a3e] focus:outline-none focus:ring-4 focus:ring-sunshine/40"
             >
-              Ver el ramo <span aria-hidden="true">→</span>
+              Este ramo es para ti <span aria-hidden="true">♡</span>
             </motion.a>
           </div>
           <motion.div
@@ -129,10 +129,21 @@ function App() {
 
       <section id="flores" className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28 lg:px-16">
         <div className="mb-11 max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sage">Elige tu favorita</p>
-          <h2 className="mt-3 font-display text-4xl text-forest sm:text-5xl">Pequeños rayos de sol</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sage">Un poquito de mi amor</p>
+          <h2 className="mt-3 font-display text-4xl text-forest sm:text-5xl">Pequeños rayos de sol para Wendy</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-3">{flowers.map((flower, index) => <FlowerCard key={flower.name} flower={flower} index={index} />)}</div>
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.65 }}
+          className="mx-auto mt-16 max-w-3xl rounded-[2rem] border border-sunshine/25 bg-white/70 px-8 py-10 text-center shadow-[0_16px_38px_rgba(100,79,21,0.08)] backdrop-blur sm:px-14"
+        >
+          <span className="text-3xl text-sunshine" aria-hidden="true">♡</span>
+          <p className="mt-4 font-display text-3xl leading-tight text-forest sm:text-4xl">Wendy, contigo hasta los días normales se sienten como primavera.</p>
+          <p className="mt-5 text-forest/65">Con amor, hoy y siempre.</p>
+        </motion.div>
       </section>
     </main>
   )
