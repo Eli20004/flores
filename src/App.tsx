@@ -12,19 +12,19 @@ type Flower = {
 const flowers: Flower[] = [
   {
     name: 'Girasoles',
-    description: 'Energía dorada que siempre busca la luz.',
+    description: 'Porque desde que estás tú, todo brilla un poquito más.',
     imageUrl: 'https://images.unsplash.com/photo-1597848212624-e1e6f348d4b3?auto=format&fit=crop&w=800&q=85',
     alt: 'Girasol amarillo en un campo luminoso',
   },
   {
     name: 'Tulipanes',
-    description: 'Un gesto suave de cariño y nuevos comienzos.',
+    description: 'Porque contigo hasta los nuevos días se sienten bonitos.',
     imageUrl: 'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=800&q=85',
     alt: 'Tulipanes amarillos frescos',
   },
   {
     name: 'Rosas',
-    description: 'Calidez, amistad y una alegría que permanece.',
+    description: 'Porque mi amor por ti florece en cada detalle.',
     imageUrl: 'https://images.unsplash.com/photo-1494336934272-f58822c6c718?auto=format&fit=crop&w=800&q=85',
     alt: 'Rosas amarillas delicadas',
   },
@@ -102,9 +102,9 @@ function App() {
         <PetalField />
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
           <div className="max-w-xl pt-8 lg:pt-0">
-            <motion.p {...fadeUp(0.08)} className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-sage">Para Wendy, con todo mi cariño</motion.p>
-            <motion.h1 {...fadeUp(0.2)} className="font-display text-5xl leading-[1.04] tracking-tight text-forest sm:text-6xl lg:text-7xl">Flores amarillas para la niña que ilumina mis días</motion.h1>
-            <motion.p {...fadeUp(0.34)} className="mt-7 max-w-md text-lg leading-8 text-forest/70">Wendy, cada flor de este ramo es un pequeño recordatorio de lo mucho que me haces sonreír. Gracias por llenar mis días de luz.</motion.p>
+            <motion.p {...fadeUp(0.08)} className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-sage">Una pequeña sorpresa para Wendy</motion.p>
+            <motion.h1 {...fadeUp(0.2)} className="font-display text-5xl leading-[1.04] tracking-tight text-forest sm:text-6xl lg:text-7xl">Wendy, eres mi lugar favorito.</motion.h1>
+            <motion.p {...fadeUp(0.34)} className="mt-7 max-w-md text-lg leading-8 text-forest/70">Te regalo estas flores amarillas porque no encontré una forma más bonita de decirte que contigo todo se siente más cálido, más alegre y más especial.</motion.p>
             <motion.a
               {...fadeUp(0.48)}
               href="#flores"
@@ -112,7 +112,7 @@ function App() {
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
               className="mt-9 inline-flex items-center gap-3 rounded-full bg-forest px-7 py-4 font-semibold text-white shadow-lg shadow-forest/20 transition-colors hover:bg-[#415a3e] focus:outline-none focus:ring-4 focus:ring-sunshine/40"
             >
-              Este ramo es para ti <span aria-hidden="true">♡</span>
+              Abre mi regalo para ti <span aria-hidden="true">♡</span>
             </motion.a>
           </div>
           <motion.div
@@ -129,8 +129,8 @@ function App() {
 
       <section id="flores" className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28 lg:px-16">
         <div className="mb-11 max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sage">Un poquito de mi amor</p>
-          <h2 className="mt-3 font-display text-4xl text-forest sm:text-5xl">Pequeños rayos de sol para Wendy</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sage">Para la persona que quiero</p>
+          <h2 className="mt-3 font-display text-4xl text-forest sm:text-5xl">Tres formas de decirte: te quiero</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-3">{flowers.map((flower, index) => <FlowerCard key={flower.name} flower={flower} index={index} />)}</div>
         <motion.div
@@ -141,8 +141,8 @@ function App() {
           className="mx-auto mt-16 max-w-3xl rounded-[2rem] border border-sunshine/25 bg-white/70 px-8 py-10 text-center shadow-[0_16px_38px_rgba(100,79,21,0.08)] backdrop-blur sm:px-14"
         >
           <span className="text-3xl text-sunshine" aria-hidden="true">♡</span>
-          <p className="mt-4 font-display text-3xl leading-tight text-forest sm:text-4xl">Wendy, contigo hasta los días normales se sienten como primavera.</p>
-          <p className="mt-5 text-forest/65">Con amor, hoy y siempre.</p>
+          <p className="mt-4 font-display text-3xl leading-tight text-forest sm:text-4xl">No son solo flores amarillas. Son una forma pequeña de recordarte lo mucho que significas para mí.</p>
+          <p className="mt-5 text-forest/65">Para Wendy, con todo mi amor. Hoy, mañana y siempre.</p>
         </motion.div>
       </section>
     </main>
