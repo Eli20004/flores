@@ -1,4 +1,5 @@
 name: Deploy GitHub Pages
+# The workflow runs automatically whenever main receives a new commit.
 
 on:
   push:
